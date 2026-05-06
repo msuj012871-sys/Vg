@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sumon9x API</title>
+</head>
+<body style="font-family:sans-serif; text-align:center; margin-top:50px;">
+
+  <h1>🔥 Sumon9x API</h1>
+
+  <input id="eat" placeholder="EAT Token"><br><br>
+  <input id="bio" placeholder="Bio"><br><br>
+
+  <button onclick="send()">Send</button>
+
+  <pre id="res"></pre>
+
+  <script>
+    async function send() {
+      let eat = document.getElementById("eat").value;
+      let bio = document.getElementById("bio").value;
+
+      let r = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ eat, bio })
+      });
+
+      let data = await r.json();
+      document.getElementById("res").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+
+</body>
+</html>
